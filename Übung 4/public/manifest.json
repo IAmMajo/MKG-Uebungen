@@ -1,0 +1,10 @@
+{
+  "short_name": "Exe App",
+  "name": "Ecerxise App",
+  "description": "This file should include the most important meta data. Cf. with https://developer.mozilla.org/en-US/docs/Web/Manifest",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
