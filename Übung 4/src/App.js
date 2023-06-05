@@ -1,4 +1,9 @@
+import "@fontsource/roboto/latin-400.css";
+import "@fontsource/roboto/latin-500.css";
 import { useState } from "react";
+import styled from "styled-components";
+import "./theme/theme.dark.css";
+import "./theme/tokens.css";
 
 // global styles
 import "./App.css";
@@ -10,6 +15,63 @@ import { Exercise } from "./components/Exercise";
 import { exercises } from ".//data/data.js";
 
 //TODO add ** for next.js
+
+const StyledDiv = styled.div`
+  margin: 16px;
+  color: var(--md-sys-color-on-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 600px) {
+    margin: 24px;
+    gap: 24px;
+  }
+`;
+
+const StyledHeader = styled.header`
+  background-color: unset;
+  color: unset;
+  padding: unset;
+  gap: 16px;
+  min-height: unset;
+
+  @media (min-width: 600px) {
+    gap: 24px;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+  }
+`;
+
+const StyledH1 = styled.h1`
+  margin: 0;
+  font-family: var(--md-sys-typescale-display-medium-font-family-name);
+  font-style: var(--md-sys-typescale-display-medium-font-family-style);
+  font-weight: var(--md-sys-typescale-display-medium-font-weight);
+  font-size: var(--md-sys-typescale-display-medium-font-size);
+  line-height: var(--md-sys-typescale-display-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-display-medium-letter-spacing);
+`;
+
+const StyledP = styled.p`
+  margin: 0;
+  font-family: var(--md-sys-typescale-body-large-font-family-name);
+  font-style: var(--md-sys-typescale-body-large-font-family-style);
+  font-weight: var(--md-sys-typescale-body-large-font-weight);
+  font-size: var(--md-sys-typescale-body-large-font-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  letter-spacing: var(--md-sys-typescale-body-large-letter-spacing);
+`;
+
+const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+`;
 
 /*
  * Main component embedded directly at index.js
@@ -46,21 +108,23 @@ function App() {
     <Exercise key={exe.id} exercise={exe}></Exercise>
   ));
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to the exercises of MKG - 2023</h1>
-        <p>
+    <StyledDiv className="App">
+      <StyledHeader className="App-header">
+        <StyledH1>Welcome to the exercises of MKG - 2023</StyledH1>
+        <StyledP>
           This ExerciseApp is based on the initial project you can get via
           create-react-app and is extended by Christina Mika-Michalski
-        </p>
-        <p>
+        </StyledP>
+        <StyledP>
           Please note, that this app is still a work in progress. So if you
           don`t like something, feel free to optimize it.
-        </p>
-        <p>Surprise: some exercises will adress gaps within this version.</p>
-      </header>
-      <main>{listItems}</main>
-    </div>
+        </StyledP>
+        <StyledP>
+          Surprise: some exercises will adress gaps within this version.
+        </StyledP>
+      </StyledHeader>
+      <StyledMain>{listItems}</StyledMain>
+    </StyledDiv>
   );
 }
 

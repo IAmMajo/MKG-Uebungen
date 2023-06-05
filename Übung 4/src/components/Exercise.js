@@ -6,22 +6,42 @@ import Task from "./Task";
  * To arrange the exercise-boxes at once:
  */
 const StyledDiv = styled.div`
-  border-radius: 3px;
-  background-color: #282c34;
-  margin: 0.5em 0.5em;
-  padding: 0.5em 1em;
-  color: white;
+  box-shadow: 0px 0px 0px 1px var(--md-sys-color-outline);
+  border-radius: 12px;
+  padding: 16px;
+`;
+
+const StyledH2 = styled.h2`
+  margin: 0;
+  font-family: var(--md-sys-typescale-headline-medium-font-family-name);
+  font-style: var(--md-sys-typescale-headline-medium-font-family-style);
+  font-weight: var(--md-sys-typescale-headline-medium-font-weight);
+  font-size: var(--md-sys-typescale-headline-medium-font-size);
+  line-height: var(--md-sys-typescale-headline-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-medium-letter-spacing);
+  margin-bottom: 16px;
+
+  @media (min-width: 600px) {
+    margin-bottom: 24px;
+  }
 `;
 
 /*
  * Just a styled version of h4
  */
 const StyledH4 = styled.h4`
-  color: #17a934;
-  margin-left: 0.5em;
-  font-size: 0.8em;
-  font-style: "italic";
-  font-family: "Helvetica Neue" sans-serif;
+  margin: 0;
+  font-family: var(--md-sys-typescale-body-medium-font-family-name);
+  font-style: var(--md-sys-typescale-body-medium-font-family-style);
+  font-weight: var(--md-sys-typescale-body-medium-font-weight);
+  font-size: var(--md-sys-typescale-body-medium-font-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-body-medium-letter-spacing);
+  margin-bottom: 16px;
+
+  @media (min-width: 600px) {
+    margin-bottom: 24px;
+  }
 `;
 
 /*
@@ -58,9 +78,9 @@ export function Exercise({ exercise }) {
 
   return (
     <StyledDiv key={exercise.id}>
-      <h2>
+      <StyledH2>
         Exercise {exercise.id}: {exercise.title} {checked && "✔"}
-      </h2>
+      </StyledH2>
       {exercise.subtitle ? <StyledH4>{exercise.subtitle}</StyledH4> : ""}
 
       <TaskArea

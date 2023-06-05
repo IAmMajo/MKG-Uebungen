@@ -1,69 +1,80 @@
 import "@material/web/checkbox/checkbox";
+import "material-icons/iconfont/outlined.css";
 import { useState } from "react";
 import styled from "styled-components";
-import "../theme/theme.dark.css";
-import "../theme/tokens.css";
 
 const StyledWrap = styled.div`
-  background-color: #282c34;
-  margin: 0.8em 0.5em;
-  padding-left: 0.5em;
+  margin-right: 24px;
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
 `;
 
 const StyledH5 = styled.h5`
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-family: var(--md-sys-typescale-body-large-font-family-name);
+  font-style: var(--md-sys-typescale-body-large-font-family-style);
+  font-weight: var(--md-sys-typescale-body-large-font-weight);
+  font-size: var(--md-sys-typescale-body-large-font-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  letter-spacing: var(--md-sys-typescale-body-large-letter-spacing);
   user-select: none;
 `;
 
 const StyledButton = styled.button`
-  background: transparent;
-  border-radius: 5px;
-  border: 2px solid #282c34;
-  margin: 0.5em 1em;
-  padding: 0.25em 1em;
-  background-color: #539b6c;
-  font-size: 0.5em;
-  color: white;
-
-  &:hover {
-    background-color: #72eb7a; // <Thing> when hovered
-  }
+  border: none;
+  background: none;
+  color: var(--md-sys-color-on-surface);
+  font-family: "Material Icons Outlined";
+  font-size: 24px;
 `;
 
 // use this component for demo in lecture:
 const StyledParagraph = styled.p`
-  color: ${(props) => (props.type === "text" ? "white" : "#17a934")};
-  padding: 0.25em 1em;
-  font-size: 0.8em;
-  font-style: ${(props) => (props.type === "text" ? "normal" : "italic")};
+  background-color: ${(props) =>
+    props.type === "code" ? "var(--md-sys-color-surface-variant)" : "unset"};
+  margin-left: 16px;
   font-family: ${(props) =>
-    props.type === "code" ? "Courier New" : "Helvetica"};
+    props.type === "code"
+      ? "Courier New"
+      : "var(--md-sys-typescale-body-medium-font-family-name)"};
+  font-style: var(--md-sys-typescale-body-medium-font-family-style);
+  font-weight: var(--md-sys-typescale-body-medium-font-weight);
+  font-size: var(--md-sys-typescale-body-medium-font-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-body-medium-letter-spacing);
 
   & > a {
-    font-size: 1em;
-    color: #539b6c;
-    text-decoration: none;
+    color: var(--md-sys-color-primary);
   }
   & > a:hover {
-    color: #6feb10;
+    color: var(--md-sys-color-secondary);
   }
 `;
 
 const StyledUl = styled.ul`
-  color: #17a934;
-  margin-left: 1.2em;
-  padding: 1em 1em;
-  font-size: 0.8em;
-  font-style: "italic";
-  font-family: "Helvetica Neue" sans-serif;
+  margin-left: 16px;
+  padding-left: 16px;
+  font-family: var(--md-sys-typescale-body-medium-font-family-name);
+  font-style: var(--md-sys-typescale-body-medium-font-family-style);
+  font-weight: var(--md-sys-typescale-body-medium-font-weight);
+  font-size: var(--md-sys-typescale-body-medium-font-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-body-medium-letter-spacing);
 `;
 
 const StyledImg = styled.img`
-  margin-left: 1.2em;
+  margin-left: 16px;
   width: 35%;
 `;
 
 const StyledImgSmall = styled.img`
-  margin-left: 1.2em;
+  margin-left: 16px;
   width: 20%;
 `;
 
@@ -139,8 +150,8 @@ function H4({ length, task, superTask, onCheckboxToggle }) {
     return (
       <>
         <StyledH5 onClick={onClick}>
-          {task.title}
           <md-checkbox checked={checked}></md-checkbox>
+          {task.title}
         </StyledH5>
       </>
     );
@@ -148,10 +159,10 @@ function H4({ length, task, superTask, onCheckboxToggle }) {
   return (
     <>
       <StyledH5 onClick={onClick}>
+        <md-checkbox checked={checked}></md-checkbox>
         {/* Generation of a) b) c) etc. 
         TODO: Strongly depends on task.id, make sure the task-id generation fits this */}
         {String.fromCharCode(97 + task.id)}) {task.title}
-        <md-checkbox checked={checked}></md-checkbox>
       </StyledH5>
     </>
   );
@@ -173,15 +184,17 @@ function Task({ task, length, superTaskId, onCheckboxToggle }) {
   }
   return (
     <StyledWrap key={task.title + " " + task.id}>
-      <H4
-        task={task}
-        length={length}
-        superTask={superTaskId}
-        onCheckboxToggle={onCheckboxToggle}
-      ></H4>
-      <StyledButton onClick={handleMoreClick}>
-        {showMore ? "Hide" : "Show"} details
-      </StyledButton>
+      <StyledDiv>
+        <H4
+          task={task}
+          length={length}
+          superTask={superTaskId}
+          onCheckboxToggle={onCheckboxToggle}
+        ></H4>
+        <StyledButton onClick={handleMoreClick}>
+          {showMore ? "expand_less" : "expand_more"}
+        </StyledButton>
+      </StyledDiv>
       {showMore && (
         <Content
           key={task.title + " " + task.id}
